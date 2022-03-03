@@ -2,8 +2,8 @@ import numpy as np
 
 
 def function(x):
-    return np.log(np.cos(x))
+    return np.log(np.cos(x) ** 2)
 
 
 if __name__ == '__main__':
-    function(2)
+    print(function(2))
