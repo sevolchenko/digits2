@@ -87,7 +87,7 @@ def draw_function(a, b, n):
     y = function(x)
     fig, ax = plt.subplots()
     ax.plot(x, y)
-    ax.set(xlabel='x', ylabel='y', title='x**2 + 3')
+    ax.set(xlabel='x', ylabel='y', title='y = x * arccos(1 / x)')
     ax.grid()
     plt.show()
 
@@ -95,15 +95,16 @@ def draw_function(a, b, n):
 def draw_difference(a, b):
     n = np.arange(1, 40)
     fig, ax = plt.subplots()
-    r1 = [rectangles_integral(a, b, n) - analytical_integral(a, b) for n in range(1, 40)]
+    excepted = analytical_integral(a, b)
+    r1 = [rectangles_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r1), 'b')
-    r2 = [trapezoids_integral(a, b, n) - analytical_integral(a, b) for n in range(1, 40)]
+    r2 = [trapezoids_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r2), 'r')
-    r3 = [parabolas_integral(a, b, n) - analytical_integral(a, b) for n in range(1, 40)]
+    r3 = [parabolas_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r3), 'g')
-    r4 = [cube_parabolas_integral(a, b, n) - analytical_integral(a, b) for n in range(1, 40)]
+    r4 = [cube_parabolas_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r4), 'y')
-    r5 = [boole_integral(a, b, n) - analytical_integral(a, b) for n in range(1, 40)]
+    r5 = [boole_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r5), 'b')
     ax.set(xlabel='n', ylabel='eps', title='y = x * arccos(1 / x)')
     ax.grid()
