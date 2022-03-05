@@ -93,7 +93,7 @@ def draw_function(a, b, n):
 
 
 def draw_difference(a, b):
-    n = np.arange(1, 40)
+    n = np.arange(1, 100)
     fig, ax = plt.subplots()
     excepted = analytical_integral(a, b)
     r1 = [rectangles_integral(a, b, n) - excepted for n in n]
@@ -105,15 +105,16 @@ def draw_difference(a, b):
     r4 = [cube_parabolas_integral(a, b, n) - excepted for n in n]
     ax.plot(n, np.abs(r4), 'y')
     r5 = [boole_integral(a, b, n) - excepted for n in n]
-    ax.plot(n, np.abs(r5), 'b')
+    ax.plot(n, np.abs(r5), 'c')
     ax.set(xlabel='n', ylabel='eps', title='y = x * arccos(1 / x)')
     ax.grid()
+    plt.yscale('log')
     plt.show()
 
 
 if __name__ == '__main__':
     a = 1
-    b = 5
+    b = 1.1
     n = 20  # h = 0.2
     to_print = "{0} output: {1}"
     print(to_print.format("Rectangles method", rectangles_integral(a, b, n)))
